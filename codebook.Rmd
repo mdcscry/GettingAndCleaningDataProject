@@ -1,0 +1,835 @@
+---
+title: "Getting and Cleaning Data Course Project Codebook"
+author: "Matthew Cryer"
+date: "Saturday, February 21, 2015"
+output: html_document
+---
+
+### OVERVIEW:
+
+##### This project seeks to assemble then summarize by taking the mean of a variety of measures.  The measures represent readings from an activity monitor.
+
+**Note:** <i>Assume the data from the following link has been downloaded and unzipped into the working directory</i>. 
+
+
+
+### STEP 1. Load Data
+
++ activity_lable <- read.csv("./activity_labels.txt",sep="",strip.white=TRUE,head=FALSE)
++ features  <- read.csv("./features.txt",sep="",strip.white=TRUE,head=FALSE)
++ X_train   <- read.csv("./train/X_train.txt",sep="",strip.white=TRUE,head=F)
++ Y_train   <- read.csv("./train/Y_train.txt",sep="",strip.white=TRUE,head=F)
++ X_test    <- read.csv("./test/X_test.txt",sep="",strip.white=TRUE,head=F)
++ Y_test    <- read.csv("./test/Y_test.txt",sep="",strip.white=TRUE,head=F)
++ subject_train <- read.csv("./train/subject_train.txt",sep="",strip.white=TRUE,head=F)
++ subject_test <- read.csv("./test/subject_test.txt",sep="",strip.white=TRUE,head=F)
+
+*This data is used by permission through acknowledgement of the following paper:*
+
+*[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012*
+
+### STEP 2. Cleanse Labels
++ I used gsub first to translate hypens to underscores.  I wrapped that into a make.names() wrapped in another gsub that eliminated periods.  This kept the hyphen separation but eliminated other punctuation
++ I also select the mean and std columns in this step selecting the index values allowing me to plug them in later
++ I read in the forums that we could debate the nature of mean vrs meanfreq.  I chose the former for no good reason other than the the directions didn't specify.
+
+### STEP 3. Join the Data
++ 7 sets of data are joined into one.  The X train and test measurement sets are unioned using rbind. The Subject and Y activity sets are similarly combined.  The activity label set is joined in to provide a description for the activity code.  I use the index vector from step 2 to skinny the measurement set.
+
+### Step 4. Summarize
++ Create a summarized view of our measurments taking the mean of all of the variables remaining.
+
+
+
+
+
+#### 1. Original Column Name : N/A
+    * Standardized Column Name : Subject
+    * axis : n/a
+    * measure : n/a
+    * Sensor1 : n/a
+    * Sensor2 : n/a
+    * Range : 1...30
+    * Position in Original File : n/a
+
+#### 2. Original Column Name : N/A
+    * Standardized Column Name : Activity
+    * axis : n/a
+    * measure : n/a
+    * Sensor1 : n/a
+    * Sensor2 : n/a
+    * Range : {WALKING,WALKING_UPSTAIRS,WALKING_DOWNSTAIRS,SITTING,STANDING,LAYING}
+    
+#### 3. Original Column Name : tBodyAcc_mean()-X<br>
+    * Standardized Column Name : tBodyAcc_mean_Y
+    * axis : X
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 1
+
+#### 4. Original Column Name : tBodyAcc-mean()-Y
+    * Standardized Column Name : tBodyAcc_mean_Y
+    * axis : Y
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 2
+
+#### 5. Original Column Name : tBodyAcc-mean()-Z
+    * Standardized Column Name : tBodyAcc_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 3
+
+#### 6. Original Column Name : tBodyAcc-std()-X
+    * Standardized Column Name : tBodyAcc_std_X
+    * axis : X
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 4
+
+#### 7. Original Column Name : tBodyAcc-std()-Y
+    * Standardized Column Name : tBodyAcc_std_Y
+    * axis : Y
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 5
+
+#### 8. Original Column Name : tBodyAcc-std()-Z
+    * Standardized Column Name : tBodyAcc_std_Z
+    * axis : Z
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 6
+
+#### 9. Original Column Name : tGravityAcc-mean()-X
+    * Standardized Column Name : tGravityAcc_mean_X
+    * axis : X
+    * measure : mean
+    * Sensor1 : tGravity
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 41
+
+#### 10. Original Column Name : tGravityAcc-mean()-Y
+    * Standardized Column Name : tGravityAcc_mean_Y
+    * axis : Y
+    * measure : mean
+    * Sensor1 : tGravity
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 42
+
+#### 11. Original Column Name : tGravityAcc-mean()-Z
+    * Standardized Column Name : tGravityAcc_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : tGravity
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 43
+
+#### 12. Original Column Name : tGravityAcc-std()-X
+    * Standardized Column Name : tGravityAcc_std_X
+    * axis : X
+    * measure : std
+    * Sensor1 : tGravity
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 44
+
+#### 13. Original Column Name : tGravityAcc-std()-Y
+    * Standardized Column Name : tGravityAcc_std_Y
+    * axis : Y
+    * measure : std
+    * Sensor1 : tGravity
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 45
+
+#### 14. Original Column Name : tGravityAcc-std()-Z
+    * Standardized Column Name : tGravityAcc_std_Z
+    * axis : Z
+    * measure : std
+    * Sensor1 : tGravity
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 46
+
+#### 15. Original Column Name : tBodyAccJerk-mean()-X
+    * Standardized Column Name : tBodyAccJerk_mean_X
+    * axis : X
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 81
+
+#### 16. Original Column Name : tBodyAccJerk-mean()-Y
+    * Standardized Column Name : tBodyAccJerk_mean_Y
+    * axis : Y
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 82
+
+#### 17. Original Column Name : tBodyAccJerk-mean()-Z
+    * Standardized Column Name : tBodyAccJerk_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 83
+
+#### 18. Original Column Name : tBodyAccJerk-std()-X
+    * Standardized Column Name : tBodyAccJerk_std_X
+    * axis : X
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 84
+
+#### 19. Original Column Name : tBodyAccJerk-std()-Y
+    * Standardized Column Name : tBodyAccJerk_std_Y
+    * axis : Y
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 85
+     
+#### 20. Original Column Name : tBodyAccJerk-std()-Z
+    * Standardized Column Name : tBodyAccJerk_std_Z
+    * axis : Z
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 86
+
+#### 21. Original Column Name : tBodyGyro-mean()-X
+    * Standardized Column Name : tBodyGyro_mean_X
+    * axis : X
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 121
+
+#### 22. Original Column Name : tBodyGyro-mean()-Y
+    * Standardized Column Name : tBodyGyro_mean_Y
+    * axis : Y
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 122
+
+#### 23. Original Column Name : tBodyGyro-mean()-Z
+    * Standardized Column Name : tBodyGyro_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 123
+
+#### 24. Original Column Name : tBodyGyro-std()-X
+    * Standardized Column Name : tBodyGyro_std_X
+    * axis : X
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 124
+
+#### 25. Original Column Name : tBodyGyro-std()-Y
+    * Standardized Column Name : tBodyGyro_std_Y
+    * axis : Y
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 125
+
+#### 26. Original Column Name : tBodyGyro-std()-Z
+    * Standardized Column Name : tBodyGyro_std_Z
+    * axis : Z
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 126
+
+#### 27. Original Column Name : tBodyGyroJerk-mean()-X
+    * Standardized Column Name : tBodyGyroJerk_mean_X
+    * axis : X
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : GyroJerk
+    * 'Range : -1...1
+    * Position in Original File : 161
+
+#### 28. Original Column Name : tBodyGyroJerk-mean()-Y
+    * Standardized Column Name : tBodyGyroJerk_mean_Y
+    * axis : Y
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : GyroJerk
+    * Range : -1...1
+    * Position in Original File : 162
+
+#### 29. Original Column Name : tBodyGyroJerk-mean()-Z
+    * Standardized Column Name : tBodyGyroJerk_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : GyroJerk
+    * Range : -1...1
+    * Position in Original File : 163
+
+#### 30. Original Column Name : tBodyGyroJerk-std()-X
+    * Standardized Column Name : tBodyGyroJerk_std_X
+    * axis : X
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : GyroJerk
+    * Range : -1...1
+    * Position in Original File : 164
+
+#### 31. Original Column Name : tBodyGyroJerk-std()-Y
+    * Standardized Column Name : tBodyGyroJerk_std_Y
+    * axis : Y
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : GyroJerk
+    * Range : -1...1
+    * Position in Original File : 165
+
+#### 32. Original Column Name : tBodyGyroJerk-std()-Z
+    * Standardized Column Name : tBodyGyroJerk_std_Z
+    * axis : Z
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : GyroJerk
+    * Range : -1...1
+    * Position in Original File : 166
+
+#### 33. Original Column Name : tBodyAccMag-mean()
+    * Standardized Column Name : tBodyAccMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : AccMag
+    * Range : -1...1
+    * Position in Original File : 201
+
+#### 34. Original Column Name : tBodyAccMag-std()
+    * Standardized Column Name : tBodyAccMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : AccMag
+    * Range : -1...1
+    * Position in Original File : 202
+
+#### 35. Original Column Name : tGravityAccMag-mean()
+    * Standardized Column Name : tGravityAccMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : tGravity
+    * Sensor2 : AccMag
+    * Range : -1...1
+    * Position in Original File : 214
+
+#### 36. Original Column Name : tGravityAccMag-std()
+    * Standardized Column Name : tGravityAccMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : tGravity
+    * Sensor2 : AccMag
+    * Range : -1...1
+    * Position in Original File : 215
+
+#### 37. Original Column Name : tBodyAccJerkMag-mean()
+    * Standardized Column Name : tBodyAccJerkMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : AccJerkMag
+    * Range : -1...1
+    * Position in Original File : 227
+
+#### 38. Original Column Name : tBodyAccJerkMag-std()
+    * Standardized Column Name : tBodyAccJerkMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : AccJerkMag
+    * Range : -1...1
+    * Position in Original File : 228
+
+#### 39. Original Column Name : tBodyGyroMag-mean()
+    * Standardized Column Name : tBodyGyroMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : GyroMag
+    * Range : -1...1
+    * Position in Original File : 240
+
+#### 40. Original Column Name : tBodyGyroMag-std()
+    * Standardized Column Name : tBodyGyroMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : GyroMag
+    * Range : -1...1
+    * Position in Original File : 241
+
+#### 41. Original Column Name : tBodyGyroJerkMag-mean()
+    * Standardized Column Name : tBodyGyroJerkMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : tBody
+    * Sensor2 : GyroJerkMag
+    * Range : -1...1
+    * Position in Original File : 253
+
+#### 42. Original Column Name : tBodyGyroJerkMag-std()
+    * Standardized Column Name : tBodyGyroJerkMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : tBody
+    * Sensor2 : GyroJerkMag
+    * Range : -1...1
+    * Position in Original File : 254
+
+#### 43. Original Column Name : fBodyAcc-mean()-X
+    * Standardized Column Name : fBodyAcc_mean_X
+    * axis : X
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 266
+
+#### 44. Original Column Name : fBodyAcc-mean()-Y
+    * Standardized Column Name : fBodyAcc_mean_Y
+    * axis : Y
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 267
+
+#### 45. Original Column Name : fBodyAcc-mean()-Z
+    * Standardized Column Name : fBodyAcc_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 268
+
+#### 46. Original Column Name : fBodyAcc-std()-X
+    * Standardized Column Name : fBodyAcc_std_X
+    * axis : X
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 269
+
+#### 47. Original Column Name : fBodyAcc-std()-Y
+    * Standardized Column Name : fBodyAcc_std_Y
+    * axis : Y
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 270
+
+#### 48. Original Column Name : fBodyAcc-std()-Z
+    * Standardized Column Name : fBodyAccJerk_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 347
+
+#### 49. Original Column Name : fBodyAcc-meanFreq()-X
+    * Standardized Column Name : fBodyAcc_meanFreq_X
+    * axis : X
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 294
+
+#### 50. Original Column Name : fBodyAcc-meanFreq()-Y
+    * Standardized Column Name : fBodyAcc_meanFreq_Y
+    * axis : Y
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 295
+
+#### 51. Original Column Name : fBodyAcc-meanFreq()-Z
+    * Standardized Column Name : fBodyAcc_meanFreq_Z
+    * axis : Z
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 296
+	
+#### 52. Original Column Name : fBodyAccJerk-mean()-X
+    * Standardized Column Name : fBodyAccJerk_mean_X
+    * axis : X
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 345
+	
+#### 53. Original Column Name : fBodyAccJerk-mean()-Y
+    * Standardized Column Name : fBodyAccJerk_mean_Y
+    * axis : Y
+    *	measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 346
+
+#### 54. Original Column Name : fBodyAccJerk-mean()-Z
+    * Standardized Column Name : fBodyAccJerk_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 347
+
+#### 55. Original Column Name : fBodyAccJerk-std()-X
+    * Standardized Column Name : fBodyAccJerk_std_X
+    * axis : X
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 348
+
+#### 56. Original Column Name : fBodyAccJerk-std()-Y
+    * Standardized Column Name : fBodyAccJerk_std_Y
+    * axis : Y
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 349
+    
+#### 57. Original Column Name : fBodyAccJerk-std()-Z
+    * Standardized Column Name : fBodyAccJerk_std_Z
+    * axis : Z
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 350
+
+#### 58. Original Column Name : fBodyAccJerk-meanFreq()-X
+    * Standardized Column Name : fBodyAccJerk_meanFreq_X
+    * axis : X
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 373
+
+#### 59. Original Column Name : fBodyAccJerk-meanFreq()-Y
+    * Standardized Column Name : fBodyAccJerk_meanFreq_Y
+    * axis : Y
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 374
+
+#### 60. Original Column Name : fBodyAccJerk-meanFreq()-Z
+    * Standardized Column Name : fBodyAccJerk_meanFreq_Z
+    * axis : Z
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 375
+
+#### 61. Original Column Name : fBodyGyro-mean()-X
+    * Standardized Column Name : fBodyGyro_mean_X
+    * axis : X
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 424
+
+#### 62. Original Column Name : fBodyGyro-mean()-Y
+    * Standardized Column Name : fBodyGyro_mean_Y
+    * axis : Y
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 425
+
+#### 63. Original Column Name : fBodyGyro-mean()-Z
+    * Standardized Column Name : fBodyGyro_mean_Z
+    * axis : Z
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 426
+
+#### 64. Original Column Name : fBodyGyro-std()-X
+    * Standardized Column Name : fBodyGyro_std_X
+    * axis : X
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 427
+
+#### 65. Original Column Name : fBodyGyro-std()-Y
+    * Standardized Column Name : fBodyGyro_std_Y
+    * axis : Y
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 428
+
+#### 66. Original Column Name : fBodyGyro-std()-Z
+    * Standardized Column Name : fBodyGyro_std_Z
+    * axis : Z
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 429
+
+#### 67. Original Column Name : fBodyGyro-meanFreq()-X
+    * Standardized Column Name : fBodyGyro_meanFreq_X
+    * axis : X
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 452
+
+#### 68. Original Column Name : fBodyGyro-meanFreq()-Y
+    * Standardized Column Name : fBodyGyro_meanFreq_Y
+    * axis : Y
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 453
+
+#### 69. Original Column Name : fBodyGyro-meanFreq()-Z
+    * Standardized Column Name : fBodyGyro_meanFreq_Z
+    * axis : Z
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 454
+
+#### 70. Original Column Name : fBodyAccMag-mean()
+    * Standardized Column Name : fBodyAccMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : AccMag
+    * Range : -1...1
+    * Position in Original File : 503
+
+#### 71. Original Column Name : fBodyAccMag-std()
+    * Standardized Column Name : fBodyAccMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : AccMag
+    * Range : -1...1
+    * Position in Original File : 504
+
+#### 72. Original Column Name : fBodyAccMag-meanFreq()
+    * Standardized Column Name : fBodyAccMag_meanFreq
+    * axis : n/a
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : AccMag
+    * Range : -1...1
+    * Position in Original File : 513
+
+#### 73. Original Column Name : fBodyBodyAccJerkMag-mean()
+    * Standardized Column Name : fBodyBodyAccJerkMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : AccJerkMag
+    * Range : -1...1
+    * Position in Original File : 516
+
+#### 74. Original Column Name : fBodyBodyAccJerkMag-std()
+    * Standardized Column Name : fBodyBodyAccJerkMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : AccJerkMag
+    * Range : -1...1
+    * Position in Original File : 517
+
+#### 75. Original Column Name : fBodyBodyAccJerkMag-meanFreq()
+    * Standardized Column Name : fBodyBodyAccJerkMag_meanFreq
+    * axis : n/a
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : AccJerkMag
+    * Range : -1...1
+    * Position in Original File : 526
+    
+#### 76. Original Column Name : fBodyBodyGyroMag-mean()
+    * Standardized Column Name : fBodyBodyGyroMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : GyroMag
+    * Range : -1...1
+    * Position in Original File : 529
+
+#### 77. Original Column Name : fBodyBodyGyroMag-std()
+    * Standardized Column Name : fBodyBodyGyroMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : GyroMag
+    * Range : -1...1
+    * Position in Original File : 530
+
+#### 78. Original Column Name : fBodyBodyGyroMag-meanFreq()
+    * Standardized Column Name : fBodyBodyGyroMag_meanFreq
+    * axis : n/a
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : GyroMag
+    * Range : -1...1
+    * Position in Original File : 539
+
+#### 79. Original Column Name : fBodyBodyGyroJerkMag-mean()
+    * Standardized Column Name : fBodyBodyGyroJerkMag_mean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : fBody
+    * Sensor2 : GyroJerkMag
+    * Range : -1...1
+    * Position in Original File : 542
+
+#### 80. Original Column Name : fBodyBodyGyroJerkMag-std()
+    * Standardized Column Name : fBodyBodyGyroJerkMag_std
+    * axis : n/a
+    * measure : std
+    * Sensor1 : fBody
+    * Sensor2 : GyroJerkMag
+    * Range : -1...1
+    * Position in Original File : 543
+
+#### 81. Original Column Name : fBodyBodyGyroJerkMag-meanFreq()
+    * Standardized Column Name : fBodyBodyGyroJerkMag_meanFreq
+    * axis : n/a
+    * measure : meanFreq
+    * Sensor1 : fBody
+    * Sensor2 : GyroJerkMag
+    * Range : -1...1
+    * Position in Original File : 552
+
+#### 82. Original Column Name : angle(tBodyAccMean,gravity)
+    * Standardized Column Name : angletBodyAccMeangravity
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : angletBody
+    * Sensor2 : Acc
+    * Range : -1...1
+    * Position in Original File : 555
+
+#### 83. Original Column Name : angle(tBodyAccJerkMean),gravityMean)
+    * Standardized Column Name : angletBodyAccJerkMeangravityMean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : angletBody
+    * Sensor2 : AccJerk
+    * Range : -1...1
+    * Position in Original File : 556
+
+#### 84. Original Column Name : angle(tBodyGyroMean,gravityMean)
+    * Standardized Column Name : angletBodyGyroMeangravityMean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : angletBody
+    * Sensor2 : Gyro
+    * Range : -1...1
+    * Position in Original File : 557
+
+#### 85. Original Column Name : angle(tBodyGyroJerkMean,gravityMean)
+    * Standardized Column Name : angletBodyGyroJerkMeangravityMean
+    * axis : n/a
+    * measure : mean
+    * Sensor1 : angletBody
+    * Sensor2 : GyroJerk
+    * Range : -1...1
+    * Position in Original File : 558
+
+#### 86. Original Column Name : angle(X,gravityMean)
+    * Standardized Column Name : angleXgravityMean
+    * axis : X
+    * measure : mean
+    * Sensor1 : angleX
+    * Sensor2 : gravity
+    * Range : -1...1
+    * Position in Original File : 559
+
+#### 87. Original Column Name : angle(Y,gravityMean)
+    * Standardized Column Name : angleYgravityMean
+    * axis : Y
+    * measure : mean
+    * Sensor1 : angleY
+    * Sensor2 : gravity
+    * Range : -1...1
+Position in Original File : 560
+
+#### 88. Original Column Name : angle(Z,gravityMean)
+    * Standardized Column Name : angleZgravityMean
+    * axis : Z
+    * measure : mean
+    * Sensor1 : angleZ
+    * Sensor2 : gravity
+    * Range : -1...1
+    * Position in Original File : 561
