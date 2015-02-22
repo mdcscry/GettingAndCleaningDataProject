@@ -823,7 +823,7 @@ subject_test <- read.csv("./test/subject_test.txt",sep="",strip.white=TRUE,head=
     * Sensor1 : angleY
     * Sensor2 : gravity
     * Range : -1...1
-Position in Original File : 560
+    * Position in Original File : 560
 
 #### 88. Original Column Name : angle(Z,gravityMean)
     * Standardized Column Name : angleZgravityMean
