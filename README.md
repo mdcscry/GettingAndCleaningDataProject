@@ -1,6 +1,8 @@
 # GettingAndCleaningDataProject
 This is the repository for the coursera Getting and Cleaning Data Course Project
 
+An R script has been provided which should be sourceable and pasteble within R.
+
 It uses data from the below project.
 
 
